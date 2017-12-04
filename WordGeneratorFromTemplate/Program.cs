@@ -25,6 +25,12 @@ namespace WordGeneratorFromTemplate
             bool errors = false;
 
             errors = Generate(currentDate, temporaryFolder, templateDocument, openXmlPowerToolsWmlDocument, data);
+
+            if (errors)
+            {
+                Console.WriteLine("There are some errors in template " + templateDocument + " .");
+                Console.WriteLine("Watch generated document AssembledDoc.docx to see errors.");
+            }
         }
 
         /// <summary>
@@ -43,12 +49,20 @@ namespace WordGeneratorFromTemplate
 
             if (errors)
             {
-                Console.WriteLine("There are some errors in template " + templateDocument + " .");
-                Console.WriteLine("Watch generated document AssembledDoc.docx to see errors.");
+                return true;
             }
 
-            FileInfo generatedDocument = new FileInfo(Path.Combine(temporaryFolder.FullName, string.Format("GeneratedFromTemplate{0:00}-{1:00}-{2:00}-{3:00}{4:00}{5:00}.docx", currentDate.Year, currentDate.Month, currentDate.Day, currentDate.Hour, currentDate.Minute, currentDate.Second)));
-            wmlAssembledDoc.SaveAs(generatedDocument.FullName);
+            try
+            {
+                FileInfo generatedDocument = new FileInfo(Path.Combine(temporaryFolder.FullName, string.Format("GeneratedFromTemplate{0:00}-{1:00}-{2:00}-{3:00}{4:00}{5:00}.docx", currentDate.Year, currentDate.Month, currentDate.Day, currentDate.Hour, currentDate.Minute, currentDate.Second)));
+                wmlAssembledDoc.SaveAs(generatedDocument.FullName);
+            }
+            catch (Exception)
+            {
+
+                return true;
+            }
+
 
             return errors;
         }
