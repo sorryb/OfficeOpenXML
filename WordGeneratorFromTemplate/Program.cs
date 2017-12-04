@@ -71,10 +71,10 @@ namespace WordGeneratorFromTemplate
         /// Initialize files and  folder to generate document.
         /// This can be done from app.config
         /// </summary>
-        /// <param name="currentDate"></param>
-        /// <param name="temporaryFolder"></param>
-        /// <param name="templateDocument"></param>
-        /// <param name="xmlDataFile"></param>
+        /// <param name="currentDate">current Date used in genetayed file name.</param>
+        /// <param name="temporaryFolder">use a folder to keep files</param>
+        /// <param name="templateDocument">the template document</param>
+        /// <param name="xmlDataFile">data from xml</param>
         private static void Initialize(out DateTime currentDate, out DirectoryInfo temporaryFolder, out FileInfo templateDocument, out FileInfo xmlDataFile)
         {
             currentDate = DateTime.Now;
