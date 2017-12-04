@@ -27,11 +27,11 @@ namespace WordGeneratorFromTemplate
         /// <summary>
         /// Generate final word document starting from a Template and xml data informations.
         /// </summary>
-        /// <param name="currentDate"></param>
-        /// <param name="temporaryFolder"></param>
-        /// <param name="templateDocument"></param>
-        /// <param name="openXmlPowerToolsWmlDocument"></param>
-        /// <param name="data"></param>
+        /// <param name="currentDate">current Date used in genetayed file name.</param>
+        /// <param name="temporaryFolder">use a folder to keep files</param>
+        /// <param name="templateDocument">the template document</param>
+        /// <param name="openXmlPowerToolsWmlDocument">an object from powerTools</param>
+        /// <param name="data">xml data file</param>
         /// <returns>true or false</returns>
         private static bool Generate(DateTime currentDate, DirectoryInfo temporaryFolder, FileInfo templateDocument, WmlDocument openXmlPowerToolsWmlDocument, XElement data)
         {
