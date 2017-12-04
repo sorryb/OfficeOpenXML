@@ -1,0 +1,11 @@
+git init
+git add --a
+git commit -a -m "open office first sample"
+
+git status
+
+git remote add origin https://github.com/sorryb/OfficeOpenXML
+git push --set-upstream origin master
+git push origin master
+
+git status
