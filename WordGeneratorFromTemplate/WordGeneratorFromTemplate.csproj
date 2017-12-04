@@ -61,6 +61,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Add new repo from cmd.txt" />
     <Content Include="ReadMe.txt" />
     <Content Include="XMLData.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

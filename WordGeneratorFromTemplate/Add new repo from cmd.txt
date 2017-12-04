@@ -9,3 +9,15 @@ git push --set-upstream origin master
 git push origin master
 
 git status
+
+
+
+
+		add to .gitignore
+
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
