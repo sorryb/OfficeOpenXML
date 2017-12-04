@@ -10,6 +10,9 @@ using OpenXmlPowerTools;
 
 namespace WordGeneratorFromTemplate
 {
+    /// <summary>
+    /// Cmd application to generate a docx from a template.
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
