@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Customer>
+  <CustomerID>468855-A5465D4</CustomerID>
+  <Name>John Doe</Name>
+  <HighValueCustomer>True</HighValueCustomer>
+  <Orders>
+    <Order Number="152">
+      <ProductDescription>Overdraft Card </ProductDescription>
+      <Quantity>1</Quantity>
+      <OrderDate>May 25, 2015</OrderDate>
+    </Order>
+    <Order Number="153">
+      <ProductDescription>VISA Card</ProductDescription>
+      <Quantity>3</Quantity>
+      <OrderDate>June 26, 2016</OrderDate>
+    </Order>
+    <Order Number="154">
+      <ProductDescription>MASTERCARD Card</ProductDescription>
+      <Quantity>1</Quantity>
+      <OrderDate>August 16, 2017</OrderDate>
+    </Order>
+  </Orders>
+</Customer>
