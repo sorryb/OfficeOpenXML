@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - dbfConvertor</title>
+    <title>@ViewData["Title"] - ExcelToDbfConvertor</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -33,6 +33,7 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="ImportExport" asp-action="UploadAndExport">Export to dbf</a></li>
+                    <li><a asp-area="" asp-controller="ImportExport" asp-action="UploadAndExportToXML">Export to XML</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Support</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")

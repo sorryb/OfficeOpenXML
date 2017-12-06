@@ -103,7 +103,7 @@ namespace Convertors
         /// </summary>
         /// <param name="dataTableExcel"></param>
         /// <param name="pathToDBF"></param>
-        /// <returns></returns>
+        /// <returns>dbf file name</returns>
         public static string DataTableToDBF(DataTable dataTableExcel, string pathToDBF)
         {
             string dbfTableName = "money_corp" + DateTime.Now.ToString("dd_mm_yyyy_hh_mm").Replace("_","");

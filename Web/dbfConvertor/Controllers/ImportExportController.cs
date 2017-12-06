@@ -22,6 +22,10 @@ namespace ExcelToDbfConvertor.Controllers.Controllers
             _environment = environment;
         }
 
+        /// <summary>
+        /// Upload and export
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult UploadAndExport()
         {
@@ -30,8 +34,22 @@ namespace ExcelToDbfConvertor.Controllers.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult UploadAndExportToXML()
+        {
+            ViewData["Message"] = "Selectie fisier Excel pentru convertire in *.xml .";
+
+            return View();
+        }
+
+
+        /// <summary>
+        /// From //http://www.talkingdotnet.com/import-export-xlsx-asp-net-core/
+        /// </summary>
+        /// <param name="files"></param>
+        /// <returns></returns>
         [HttpPost]
-        public IActionResult UploadAndExport(ICollection<IFormFile> files)//http://www.talkingdotnet.com/import-export-xlsx-asp-net-core/
+        public IActionResult UploadAndExport(ICollection<IFormFile> files)
         {
             DataTable dtExcel;
 
@@ -65,6 +83,45 @@ namespace ExcelToDbfConvertor.Controllers.Controllers
 
             return View("UploadAndExport");
         }
+
+        /// <summary>
+        /// See https://code.msdn.microsoft.com/office/How-to-convert-excel-file-7a9bb404/view/SourceCode#content
+        /// </summary>
+        /// <param name="files"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult UploadAndExportToXML(ICollection<IFormFile> files)
+        {
+            DataTable dtExcel;
+
+            foreach (var file in files)
+            {
+                try
+                {
+
+                    string uploads = Path.Combine(_environment.WebRootPath, "uploads");
+
+                    string pathToFile = Path.Combine(uploads, file.FileName);
+
+                    ExcelToXmlConvertor excelToXmlConvertor = new ExcelToXmlConvertor();
+                    string xmlFormatString = excelToXmlConvertor.GetXML(pathToFile);
+
+                    
+                    ViewBag.FileName = excelToXmlConvertor.FileName;
+                    ViewBag.Data = xmlFormatString;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+            }
+
+            ViewData["Message"] = "S-a incarcat pe server " + files.Count + " fisier.";
+
+            return View("UploadAndExportToXML");
+        }
+
 
 
     }
