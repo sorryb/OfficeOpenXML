@@ -1,0 +1,39 @@
+
+
+https://ef.readthedocs.io/en/staging/platforms/aspnetcore/existing-db.html
+
+Scaffold-DbContext "Server=(local);Database=JustBlog;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+You need to put the primary key in your tables
+
+
+
+
+SQL Server prevent saving changes option
+option, follow these steps:
+Open SQL Server Management Studio (SSMS). 
+On the Tools menu, click Options. 
+In the navigation pane of the Options window, click Designers. 
+Select or clear the Prevent saving changes that require the table re-creation check box, and then click OK.
+
+
+
+{
+  "Data": {
+    "aspIdentity": {
+      "DefaultConnection": "Server=.;Database=dbfConvertor-Users-2b29-45da-906c-f4ec4d37bbd1;Trusted_Connection=True;MultipleActiveResultSets=true"
+    },
+    "dbfConvertor": {
+      "dbfConvertorConnection": "Server=.;Database=dbfConvertor;Trusted_Connection=True;MultipleActiveResultSets=true"
+    },
+
+
+    "Logging": {
+      "IncludeScopes": false,
+      "LogLevel": {
+        "Default": "Debug",
+        "System": "Information",
+        "Microsoft": "Information"
+      }
+    }
+  }

@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="~/images/banner1.png" alt="dBase Convertors" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Transforma documente din excel-*.xlsx in format  dBase (sau *.dbf).
+                    <a class="btn btn-default" href="http://itstillworks.com/export-xls-dbf-6952516.html">
+                        Mai multe...
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/banner2.png" alt="Excel Convertors" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Trebuie incarcat un fisier excel in format xlsx care respecta standardul BNR .
+                    <a class="btn btn-default" href="~/docs/import.xlsx">
+                        Mai multe...
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/banner3.png" alt="Package Convertors" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                   Fisierul de Output va fi dBase cu extensia *.dbf .
+                    <a class="btn btn-default" href="~/docs/SpecificatiiRaportTransferuriExterne.pdf">
+                        Mai multe...
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/banner4.png" alt="Microsoft Convertors" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Trebuie sa va autentificati ca sa vedeti statistici despre exportul excel-dbf :
+                    <a class="btn btn-default" asp-controller="Account"  asp-action="Login">
+                        Mai multe...
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Precedentul</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Urmatorul</span>
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>O.N.P.C.S.B.</h2>
+        <ul>
+            <li><a href="http://www.onpcsb.ro">Oficiul National de Prevenire si Spalare a Banilor</a></li>
+            <li><a href="http://www.onpcsb.ro/html/rapoarte.php">Rapoarte O.N.P.C.S.B.</a></li>
+            <li><a href="http://www.onpcsb.ro/docs/Tranzactii_numerar.doc">Raport de tranzactii cu numerar</a></li>
+            <li><a href="http://www.onpcsb.ro/docs/Transferuri_externe.doc">Raport de transferuri externe</a></li>
+            <li><a href="http://www.onpcsb.ro/docs/Tranzactii_suspecte.doc">Raport de tranzactii suspecte </a></li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h2>Specificatii Raport de Transferuri Externe</h2>
+        <ul>
+            <li><a href="~/docs/Specificatii Raport de Transferuri Externe.pdf">Specificatii Raport de Transferuri Externe.pdf</a></li>
+
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h2>Reguli de validare</h2>
+        <ul>
+            <li><a href="~/docs/SPD276-02 - Reguli de validare.pdf">Reguli de validare</a></li>
+
+        </ul>
+    </div>
+</div>

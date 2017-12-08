@@ -1,0 +1,36 @@
+
+Host ASP.NET Core on Windows with IIS
+https://docs.microsoft.com/en-us/aspnet/core/publishing/iis?tabs=aspnetcore2x
+
+Deploying .NET Core apps with Visual Studio
+https://docs.microsoft.com/en-us/dotnet/core/deploying/deploy-with-vs
+
+NET Core RID Catalog
+https://docs.microsoft.com/en-us/dotnet/core/rid-catalog
+
+
+
+https://stackoverflow.com/questions/38271966/web-deploy-error-error-destination-not-reachable   :
+1.All the IIS installables are in place
+2.Firewall inbound rule for port 8172 (TCP) is in place, There are no issues with the other Firewall rules as i have turned the Firewalls off
+3.Installed Web Deploy 3.6 and Web deploy 3.6 for Hosting servers
+4.Made sure Web Management Service,Web Deployment Agent Service is started and set to Automatic
+
+ATENTIE ! La conexiunea la serverul de SQL !!!    .\\SQLEXPRESS
+
+PUT Development to see errors !!!
+
+<environmentVariables>
+        <environmentVariable name="ASPNETCORE_ENVIRONMENT" value="Development" />
+      </environmentVariables>
+    </aspNetCore>
+
+The 'VFPOLEDB.1' provider is not registered on the local machine”  :https://stackoverflow.com/questions/15684575/getting-the-error-the-vfpoledb-1-provider-is-not-registered-on-the-local-mach
+
+It is registered as it should. It is your application that is compiled for AnyCPU Platform.
+In x64 operating system this produces 64bit code and 64bit code could not access 32bit drivers.
+
+Change your Platform to x86 and you will be fine.
+
+
+user test1@gmail.com si bT@dm!n1

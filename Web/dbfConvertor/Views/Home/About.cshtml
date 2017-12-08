@@ -1,0 +1,302 @@
+﻿@using System.Data;
+@{
+    ViewData["Title"] = "Export";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+
+<style>
+    <!-- https://stackoverflow.com/questions/11235206/twitter-bootstrap-form-file-element-upload-button -->
+    .input-file {
+        position: relative;
+        margin: 60px 60px 0
+    }
+    /* Remove margin, it is just for stackoverflow viewing */
+    .input-file .input-group-addon {
+        border: 0px;
+        padding: 0px;
+    }
+
+    .input-file .input-group-addon .btn 
+    {
+        border-radius: 0 4px 4px 0
+    }
+
+    .input-file .input-group-addon input {
+        cursor: pointer;
+        position: absolute;
+        /*width: 72px;*/
+        z-index: 2;
+        top: 0;
+        right: 0;
+        filter: alpha(opacity=0);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        opacity: 0;
+        background-color: transparent;
+        color: transparent;
+    }
+</style>
+<style type="text/css">
+    /* Generic Styling, for Desktops/Laptops */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    /* Zebra striping */
+    tr:nth-of-type(odd) {
+        background: #eee;
+    }
+
+    th {
+        background: #333;
+        color: white;
+        font-weight: bold;
+    }
+
+    td, th {
+        padding: 6px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+    /*
+    Max width before this PARTICULAR table gets nasty
+    This query will take effect for any screen smaller than 760px
+    and also iPads specifically.
+    */
+    @@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+        tr {
+            border: 1px solid #ccc;
+        }
+
+        td {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+            }
+
+            /*
+     Label the data
+     */
+            td:before {
+                content: attr(data-title);
+            }
+    }
+</style>
+
+<form  id="formUploadSelect"  method="post" asp-action="UploadAndExport" asp-controller="Home" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-7">
+
+            <div class="input-group input-file" >
+                <div class="form-control" id="display">
+                    <span  id="display-file-info"></span>
+                    <a href="" target="_blank"></a>
+                </div>
+                <span class="input-group-addon">
+                    <a class='btn btn-primary' href='javascript:;'>
+                        Selecteaza fisiere
+                        <input type="file" placeholder="Path" id="files" name="files" multiple  accept=".xlsx" size="40" >
+
+                    </a>
+                </span>
+            </div>
+
+        </div>
+        <div class="col-md-5">            
+            <input class='btn btn-primary' type="submit" value="Incarca pe server" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <div  id="selectedFiles"></div>
+        </div>
+    </div>
+
+
+</form>
+
+<script>
+        var selDiv = "";
+
+        document.addEventListener("DOMContentLoaded", init, false);
+
+        function init() {
+            document.querySelector('#files').addEventListener('change', handleFileSelect, false);
+            selDiv = document.querySelector("#selectedFiles");
+        }
+
+        function handleFileSelect(e) {
+            console.dir(e);
+
+            if (!e.target.files) return;
+
+            selDiv.innerHTML = "";
+
+            var files = e.target.files;
+            for (var i = 0; i < files.length; i++) {
+                var f = files[i];
+
+                selDiv.innerHTML += f.name + "<br/>";
+
+            }
+
+            document.querySelector("#display").innerText = 'S-au selectat ' + files.length + ' fisiere: ';
+        }
+</script>
+
+<script type="text/javascript">
+        var myMessages = ['info', 'warning', 'error', 'success'];
+        function hideAllMessages() {
+            var messagesHeights = new Array(); // this array will store height for each
+
+            for (i = 0; i < myMessages.length; i++) {
+                messagesHeights[i] = $('.' + myMessages[i]).outerHeight(); // fill array
+                $('.' + myMessages[i]).css('top', -messagesHeights[i]); //move element outside viewport
+            }
+        }
+        function showMessage(type) {
+            $('.' + type + '-trigger').click(function () {
+                hideAllMessages();
+                $('.' + type).animate({ top: "0" }, 50000);
+            });
+        }
+        $(document).ready(function () {
+            hideAllMessages();
+            $("#Upload").click(function () {
+
+                var formData = new FormData();
+                var totalFiles = document.getElementById("FileUpload1").files.length;
+                for (var i = 0; i < totalFiles; i++) {
+                    var file = document.getElementById("FileUpload1").files[i];
+
+                    formData.append("FileUpload1", file);
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '/Home/ImportExcel',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        showMessage(myMessages[3]);
+
+                    },
+                    error: function (xhr, textStatus, error) {
+                        console.log(xhr.statusText);
+                        console.log(textStatus);
+                        console.log(error);
+                    }
+                });
+            });
+        });
+</script>
+
+
+<div class=" = row">
+    <div class="col-md-10"  style="overflow-y: auto; height:450px; ">
+
+            <table id="">
+
+                @if (ViewBag.Data != null)
+                {
+                    <thead>
+
+                        @foreach (DataColumn column in (ViewBag.Data as System.Data.DataTable).Columns)
+                {
+                        <th>@column.ColumnName.ToUpper()</th>
+
+
+                        }
+                        </thead>
+                    if ((ViewBag.Data as System.Data.DataTable).Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in (ViewBag.Data as System.Data.DataTable).Rows)
+                        {
+
+                            <tr>
+
+                                @foreach (DataColumn column in (ViewBag.Data as System.Data.DataTable).Columns)
+                        {
+                                    <td data-title='@column.ColumnName'>
+
+                                        @dr[column].ToString()&nbsp;
+                                    </td>
+                                }
+
+
+
+
+                            </tr>
+
+                        }
+
+                    }
+                    else
+                    {
+                        int count = (ViewBag.Data as System.Data.DataTable).Columns.Count;
+                        <tr>
+
+                            <td colspan='@count' style="color:red;">
+
+                                Nu s-au incarcat date.
+                            </td>
+
+
+
+                        </tr>
+
+                    }
+
+                }
+                else
+                {
+                    if (ViewBag.Error != null)
+                    {
+                        <tr>
+                            <td style="color:red;">
+
+                                @(ViewBag.Error != null ? ViewBag.Error.ToString() : "")
+                            </td>
+
+
+
+                        </tr>
+                    }
+                }
+            </table>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3"><a href="~/uploads/@ViewBag.FileName" > @ViewBag.FileName </a></div>
+</div>
+
+
