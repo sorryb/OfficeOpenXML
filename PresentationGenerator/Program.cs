@@ -9,6 +9,9 @@ using P = DocumentFormat.OpenXml.Presentation;
 
 namespace PresentationGenerator
 {
+    /// <summary>
+    /// Start presentation-entry point.
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
