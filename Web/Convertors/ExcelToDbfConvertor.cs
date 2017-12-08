@@ -164,12 +164,18 @@ namespace Convertors
 
             return dbfTableName + ".dbf";
         }
-
+        
+         /// <summary>
+         /// Excel to dbf convertor
+        /// </summary>
         private static bool ClearDataReader(object dr)
         {
             return string.IsNullOrEmpty(dr.ToString()) || dr.ToString() == "Null";
         }
-
+         
+        /// <summary>
+        /// Excel to dbf convertor
+       /// </summary>
         public static DataTable ExcelToDataTable(MemoryStream memoryStream)
         {
             DataTable dt;
