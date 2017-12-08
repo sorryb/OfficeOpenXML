@@ -9,10 +9,16 @@ using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace Convertors
 {
+     /// <summary>
+    /// Excel to XML convertor using OpenOffice XML.
+    /// </summary>
     public class ExcelToXmlConvertor
     {
         private  string _fileName;
-
+        
+        /// <summary>
+        /// Name of file to convert.
+        /// </summary>
         public  string FileName {
             get { return _fileName; }
         }
